@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroma Cosmos - Product Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f5fc',
+                            100: '#e1ebf9',
+                            500: '#3b82f6',
+                            800: '#002a5c',
+                            900: '#001e40', // brand dark blue
+                        },
+                        accent: {
+                            500: '#d4af37', // brand gold
+                            600: '#b5952f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .glass-header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="fixed inset-0 bg-gray-900 bg-opacity-95 z-[100] flex items-center justify-center backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md transform transition-transform">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-primary-900 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <span class="text-white font-bold text-3xl">C</span>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900">Admin Access</h2>
+                <p class="text-sm text-gray-500 mt-1">Please enter your password to continue.</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <input type="password" id="adminPassword" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-3 outline-none text-center tracking-widest" placeholder="••••••••">
+                    <p id="loginError" class="text-red-500 text-sm mt-2 hidden text-center font-medium">Incorrect password.</p>
+                </div>
+                <button type="submit" class="w-full text-white bg-primary-900 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-3 transition-colors shadow">
+                    Login to Dashboard
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-header border-b border-gray-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-primary-900 rounded-lg flex items-center justify-center shadow-md">
+                    <span class="text-white font-bold text-xl leading-none">C</span>
+                </div>
+                <div>
+                    <h1 class="font-bold text-gray-900 text-lg leading-tight tracking-tight">Product Manager</h1>
+                    <p class="text-xs text-gray-500 font-medium">Chroma Cosmos Exports</p>
+                </div>
+            </div>
+            <a href="index.html" class="flex items-center gap-2 text-gray-600 hover:text-primary-900 transition-colors font-medium text-sm">
+                <span class="material-symbols-outlined text-sm">open_in_new</span>
+                <span class="hidden sm:inline">View Live Site</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Header Actions -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Products Catalog</h2>
+                <p class="text-gray-500 mt-1 text-sm">Add, edit, or remove products from your website's inventory.</p>
+            </div>
+            <button onclick="openModal()" class="bg-primary-900 hover:bg-primary-800 text-white px-5 py-2.5 rounded-lg shadow-md transition-all flex items-center gap-2 font-medium">
+                <span class="material-symbols-outlined text-sm">add</span> Add Product
+            </button>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="loadingState" class="text-center py-12">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-200 border-t-primary-900 mb-4"></div>
+            <p class="text-gray-500 font-medium">Loading products...</p>
+        </div>
+
+        <div id="emptyState" class="hidden text-center py-16 bg-white rounded-2xl border border-gray-200 shadow-sm">
+            <span class="material-symbols-outlined text-gray-300 text-6xl mb-4">inventory_2</span>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">No products found</h3>
+            <p class="text-gray-500 text-sm mb-6 max-w-md mx-auto">Your catalog is currently empty. Click the button below to add your first product.</p>
+            <button onclick="openModal()" class="bg-primary-900 hover:bg-primary-800 text-white px-5 py-2 rounded-lg transition-all font-medium text-sm">
+                Add First Product
+            </button>
+        </div>
+
+        <div id="productGrid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic Cards -->
+        </div>
+
+    </main>
+
+    <!-- Add/Edit Modal -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        
+        <div class="absolute inset-0 flex items-center justify-center p-4 pointer-events-none">
+            <div class="bg-white rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl pointer-events-auto flex flex-col transform transition-transform scale-100">
+                <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white/95 backdrop-blur z-10">
+                    <h2 id="modalTitle" class="text-xl font-bold text-gray-900">Add Product</h2>
+                    <button type="button" onclick="closeModal()" class="text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-full transition-colors">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                
+                <form id="productForm" class="p-6 space-y-5">
+                    <input type="hidden" id="productId">
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Product Title</label>
+                        <input type="text" id="productTitle" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 transition-colors outline-none" placeholder="e.g. Premium Basmati Rice">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Category</label>
+                        <select id="productCategory" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 transition-colors outline-none cursor-pointer">
+                            <option value="">Loading categories...</option>
+                        </select>
+                        <input type="text" id="newCategoryName" class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 mt-2 transition-colors outline-none hidden" placeholder="Enter new category name">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1.5">Image</label>
+                        <div class="flex space-x-4 mb-3">
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="radio" name="imageSource" value="url" checked class="form-radio text-primary-500 h-4 w-4">
+                                <span class="ml-2 text-sm text-gray-700 font-medium">Link (URL)</span>
+                            </label>
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="radio" name="imageSource" value="upload" class="form-radio text-primary-500 h-4 w-4">
+                                <span class="ml-2 text-sm text-gray-700 font-medium">Upload File</span>
+                            </label>
+                        </div>
+                        
+                        <div id="imageInputUrlSection">
+                            <input type="url" id="productImage" class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 transition-colors outline-none" placeholder="https://...">
+                        </div>
+                        
+                        <div id="imageInputFileSection" class="hidden space-y-3">
+                            <input type="file" id="productImageFile" accept="image/png, image/jpeg, image/webp" class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 transition-colors outline-none file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                            
+                            <div id="cropperWrapper" class="hidden flex-col gap-2">
+                                <div class="w-full max-h-[300px] bg-gray-100 rounded-lg border overflow-hidden">
+                                    <img id="cropperImage" src="" class="block max-w-full">
+                                </div>
+                                <button type="button" id="btnApplyCrop" class="w-full font-semibold text-sm bg-gray-800 text-white px-4 py-2.5 rounded-lg hover:bg-gray-700 transition-colors">Confirm Adjustment</button>
+                            </div>
+                        </div>
+
+                        <div id="imagePreviewContainer" class="hidden mt-4 rounded-lg overflow-hidden border border-gray-200 bg-gray-50 h-32 relative">
+                            <img id="imagePreview" src="" alt="Preview" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1.5">Supply Capacity</label>
+                            <input type="text" id="productCapacity" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 transition-colors outline-none" placeholder="e.g. 500 Tons/Month">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1.5">Quality Grade</label>
+                            <input type="text" id="productGrade" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 transition-colors outline-none" placeholder="e.g. Grade A">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1.5">Origin Country</label>
+                            <input type="text" id="productOrigin" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 transition-colors outline-none" placeholder="e.g. India">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1.5">Min. Order Qty (MOQ)</label>
+                            <input type="text" id="productMoq" required class="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 block px-4 py-2.5 transition-colors outline-none" placeholder="e.g. 1 Metric Ton">
+                        </div>
+                    </div>
+
+                    <div class="pt-5 flex justify-end gap-3 border-t border-gray-100 mt-8">
+                        <button type="button" onclick="closeModal()" class="px-5 py-2.5 font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">Cancel</button>
+                        <button type="submit" id="saveButton" class="px-5 py-2.5 font-medium text-white bg-primary-900 rounded-lg hover:bg-primary-800 transition-colors shadow flex items-center gap-2">
+                            Save Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 transform transition-all duration-300 translate-y-20 opacity-0 bg-gray-900 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 z-50 font-medium max-w-sm">
+        <span class="material-symbols-outlined text-green-400" id="toastIcon">check_circle</span>
+        <span id="toastMessage">Action successful</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const SUPABASE_URL = 'https://mfulkcvojtgnciuplgsj.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1mdWxrY3ZvanRnbmNpdXBsZ3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4MTE3MDAsImV4cCI6MjA5ODM4NzcwMH0.L97XBramzNknrTUOoYLdBtlI_S67woPuGdim01gXOog';
+        const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let products = [];
+        let categories = [];
+        let cropper = null;
+        let currentCroppedBlob = null;
+        let imageMode = 'url'; // 'url' or 'upload'
+
+        // UI Helpers
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            const icon = document.getElementById('toastIcon');
+            
+            if (type === 'error') {
+                icon.textContent = 'error';
+                icon.className = 'material-symbols-outlined text-red-400';
+            } else if (type === 'info') {
+                icon.textContent = 'info';
+                icon.className = 'material-symbols-outlined text-blue-400';
+            } else {
+                icon.textContent = 'check_circle';
+                icon.className = 'material-symbols-outlined text-green-400';
+            }
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Live Image Preview
+        document.getElementById('productImage').addEventListener('input', (e) => {
+            const url = e.target.value;
+            const container = document.getElementById('imagePreviewContainer');
+            const img = document.getElementById('imagePreview');
+            
+            if (url) {
+                img.src = url;
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+            }
+        });
+
+        // Data Fetching
+        async function loadData() {
+            try {
+                const [resProducts, resCategories] = await Promise.all([
+                    db.from('products').select('*'),
+                    db.from('categories').select('*')
+                ]);
+                
+                if (resProducts.error) throw resProducts.error;
+                if (resCategories.error) throw resCategories.error;
+                
+                products = resProducts.data || [];
+                categories = resCategories.data || [];
+                
+                updateCategoryDropdown();
+                renderProducts();
+            } catch (err) {
+                console.error(err);
+                showToast("Failed to connect to server", 'error');
+            }
+        }
+
+        function updateCategoryDropdown() {
+            const select = document.getElementById('productCategory');
+            select.innerHTML = '<option value="" disabled selected>Select a category...</option>';
+            categories.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.slug;
+                opt.textContent = c.name;
+                select.appendChild(opt);
+            });
+            const optNew = document.createElement('option');
+            optNew.value = '__new__';
+            optNew.textContent = '+ Add new category...';
+            optNew.className = 'font-semibold text-primary-600 bg-primary-50';
+            select.appendChild(optNew);
+        }
+
+        document.getElementById('productCategory').addEventListener('change', (e) => {
+            const newCatInput = document.getElementById('newCategoryName');
+            if (e.target.value === '__new__') {
+                newCatInput.classList.remove('hidden');
+                newCatInput.required = true;
+                newCatInput.focus();
+            } else {
+                newCatInput.classList.add('hidden');
+                newCatInput.required = false;
+            }
+        });
+
+        function renderProducts() {
+            document.getElementById('loadingState').classList.add('hidden');
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            grid.innerHTML = '';
+            
+            if (products.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.classList.remove('hidden');
+
+            // Sort products by newest first (assuming ID is chronological, or just reverse order)
+            const sortedProducts = [...products].reverse();
+
+            sortedProducts.forEach(p => {
+                const catName = categories.find(c => c.slug === p.category)?.name || p.category;
+                
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col hover:shadow-md transition-shadow group relative";
+                
+                card.innerHTML = `
+                    <div class="h-48 overflow-hidden relative bg-gray-100">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 800 400%22%3E%3Crect fill=%22%23f3f4f6%22 width=%22800%22 height=%22400%22/%3E%3Ctext fill=%22%239ca3af%22 font-family=%22sans-serif%22 font-size=%2224%22 dy=%2210.5%22 font-weight=%22bold%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EImage Load Error%3C/text%3E%3C/svg%3E'">
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur px-2.5 py-1 rounded-full text-xs font-semibold text-gray-700 shadow-sm">
+                            ${catName}
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="font-bold text-gray-900 text-lg mb-3 line-clamp-1">${p.title}</h3>
+                        
+                        <div class="space-y-2 mb-6 flex-grow">
+                            <div class="flex items-center text-sm text-gray-600 gap-2">
+                                <span class="material-symbols-outlined text-[18px] text-gray-400">public</span>
+                                <span>${p.origin || 'N/A'}</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 gap-2">
+                                <span class="material-symbols-outlined text-[18px] text-gray-400">factory</span>
+                                <span>${p.capacity || 'N/A'}</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 gap-2">
+                                <span class="material-symbols-outlined text-[18px] text-gray-400">verified</span>
+                                <span>${p.grade}</span>
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600 gap-2">
+                                <span class="material-symbols-outlined text-[18px] text-gray-400">inventory_2</span>
+                                <span>${p.moq}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3 pt-4 border-t border-gray-100">
+                            <button onclick="openModal('${p.id}')" class="flex items-center justify-center gap-1.5 py-2 rounded-lg text-primary-600 bg-primary-50 hover:bg-primary-100 font-medium text-sm transition-colors">
+                                <span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                            </button>
+                            <button onclick="deleteProduct('${p.id}')" class="flex items-center justify-center gap-1.5 py-2 rounded-lg text-red-600 bg-red-50 hover:bg-red-100 font-medium text-sm transition-colors">
+                                <span class="material-symbols-outlined text-[18px]">delete</span> Delete
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Modal Logic
+        function openModal(id = null) {
+            const modal = document.getElementById('productModal');
+            const form = document.getElementById('productForm');
+            const title = document.getElementById('modalTitle');
+            const previewContainer = document.getElementById('imagePreviewContainer');
+            const newCatInput = document.getElementById('newCategoryName');
+            
+            newCatInput.classList.add('hidden');
+            newCatInput.required = false;
+            newCatInput.value = '';
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            
+            if (id) {
+                title.textContent = 'Edit Product';
+                const p = products.find(prod => prod.id === id);
+                document.getElementById('productId').value = p.id;
+                document.getElementById('productTitle').value = p.title;
+                document.getElementById('productCategory').value = p.category;
+                document.getElementById('productCapacity').value = p.capacity || '';
+                document.getElementById('productOrigin').value = p.origin || '';
+                document.getElementById('productGrade').value = p.grade;
+                document.getElementById('productMoq').value = p.moq;
+                document.getElementById('productImage').value = p.image;
+                document.getElementById('imagePreview').src = p.image;
+                previewContainer.classList.remove('hidden');
+                
+                // Reset to URL mode on edit
+                document.querySelector('input[name="imageSource"][value="url"]').click();
+            } else {
+                title.textContent = 'Add New Product';
+                form.reset();
+                document.getElementById('productId').value = '';
+                previewContainer.classList.add('hidden');
+                currentCroppedBlob = null;
+                if (cropper) {
+                    cropper.destroy();
+                    cropper = null;
+                }
+                document.getElementById('cropperWrapper').classList.add('hidden');
+                document.querySelector('input[name="imageSource"][value="url"]').click();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Image Toggle & Cropper Logic
+        document.querySelectorAll('input[name="imageSource"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                imageMode = e.target.value;
+                const urlSec = document.getElementById('imageInputUrlSection');
+                const fileSec = document.getElementById('imageInputFileSection');
+                const urlInput = document.getElementById('productImage');
+                
+                if (imageMode === 'url') {
+                    urlSec.classList.remove('hidden');
+                    fileSec.classList.add('hidden');
+                    urlInput.required = true;
+                    if (urlInput.value) {
+                        document.getElementById('imagePreview').src = urlInput.value;
+                        document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                    }
+                } else {
+                    urlSec.classList.add('hidden');
+                    fileSec.classList.remove('hidden');
+                    urlInput.required = false;
+                }
+            });
+        });
+
+        document.getElementById('productImageFile').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
+                const cropperImg = document.getElementById('cropperImage');
+                cropperImg.src = url;
+                document.getElementById('cropperWrapper').classList.remove('hidden');
+                
+                if (cropper) {
+                    cropper.destroy();
+                }
+                
+                cropper = new Cropper(cropperImg, {
+                    aspectRatio: 16 / 9, // Enforce product card aspect ratio
+                    viewMode: 1,
+                    autoCropArea: 1
+                });
+            }
+        });
+
+        document.getElementById('btnApplyCrop').addEventListener('click', () => {
+            if (!cropper) return;
+            cropper.getCroppedCanvas({
+                maxWidth: 1024,
+                maxHeight: 1024,
+            }).toBlob((blob) => {
+                currentCroppedBlob = blob;
+                const url = URL.createObjectURL(blob);
+                document.getElementById('imagePreview').src = url;
+                document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                document.getElementById('cropperWrapper').classList.add('hidden');
+            }, 'image/jpeg', 0.85);
+        });
+
+        // CRUD Operations
+        document.getElementById('productForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const pId = document.getElementById('productId').value;
+            let selectedCategory = document.getElementById('productCategory').value;
+            
+            const btn = document.getElementById('saveButton');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">progress_activity</span> Saving...';
+
+            try {
+                // Handle new category creation
+                if (selectedCategory === '__new__') {
+                    const newCatName = document.getElementById('newCategoryName').value.trim();
+                    const newCatSlug = newCatName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                    
+                    const newCategory = {
+                        id: Date.now().toString(),
+                        name: newCatName,
+                        slug: newCatSlug
+                    };
+                    
+                    const { error: catError } = await db.from('categories').insert(newCategory);
+                    if (catError) throw catError;
+                    
+                    categories.push(newCategory);
+                    selectedCategory = newCatSlug;
+                    updateCategoryDropdown();
+                }
+                let finalImageUrl = document.getElementById('productImage').value.trim();
+
+                // Upload image if using File Mode and have a cropped blob
+                if (imageMode === 'upload' && currentCroppedBlob) {
+                    const fileName = `prod_${Date.now()}.jpg`;
+                    const { data, error: uploadError } = await db.storage
+                        .from('product-images')
+                        .upload(fileName, currentCroppedBlob, { contentType: 'image/jpeg' });
+                        
+                    if (uploadError) {
+                        throw new Error("Failed to upload image: " + uploadError.message);
+                    }
+                    
+                    const { data: publicUrlData } = db.storage
+                        .from('product-images')
+                        .getPublicUrl(fileName);
+                        
+                    finalImageUrl = publicUrlData.publicUrl;
+                }
+
+                if (imageMode === 'upload' && !currentCroppedBlob && !pId) {
+                     throw new Error("Please upload and crop an image.");
+                }
+
+                const product = {
+                    id: pId || Date.now().toString(),
+                    title: document.getElementById('productTitle').value.trim(),
+                    category: selectedCategory,
+                    capacity: document.getElementById('productCapacity').value.trim(),
+                    origin: document.getElementById('productOrigin').value.trim(),
+                    grade: document.getElementById('productGrade').value.trim(),
+                    moq: document.getElementById('productMoq').value.trim(),
+                    image: imageMode === 'upload' && !currentCroppedBlob && pId ? document.getElementById('productImage').value.trim() : finalImageUrl,
+                };
+
+                const isEdit = !!pId;
+                const { error: prodError } = await db.from('products').upsert(product);
+                if (prodError) throw prodError;
+
+                if (isEdit) {
+                    products = products.map(p => p.id === pId ? product : p);
+                    showToast("Product updated successfully");
+                } else {
+                    products.push(product);
+                    showToast("Product added successfully");
+                }
+                
+                renderProducts();
+                closeModal();
+            } catch (err) {
+                console.error(err);
+                showToast("Failed to save product", 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        });
+
+        async function deleteProduct(id) {
+            if (confirm("Are you sure you want to remove this product? This action cannot be undone.")) {
+                try {
+                    const { error } = await db.from('products').delete().eq('id', id);
+                    if (error) throw error;
+                    
+                    products = products.filter(p => p.id !== id);
+                    renderProducts();
+                    showToast("Product deleted successfully");
+                } catch (err) {
+                    console.error(err);
+                    showToast("Failed to delete product", 'error');
+                }
+            }
+        }
+
+        // Init & Login Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('loginOverlay');
+            const form = document.getElementById('loginForm');
+            const error = document.getElementById('loginError');
+            
+            // Check if already authenticated in this session
+            if (sessionStorage.getItem('adminAuth') === 'true') {
+                overlay.style.display = 'none';
+                loadData();
+            }
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const pwd = document.getElementById('adminPassword').value;
+                if (pwd === 'Chroma@cosmos@exports') {
+                    sessionStorage.setItem('adminAuth', 'true');
+                    overlay.style.opacity = '0';
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                        loadData(); // Load data only after login
+                    }, 300);
+                } else {
+                    error.classList.remove('hidden');
+                    document.getElementById('adminPassword').value = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us - Chroma Cosmos Exports</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "on-primary-fixed-variant": "#1f477b",
+                      "tertiary-container": "#303436",
+                      "on-tertiary-fixed": "#181c1e",
+                      "tertiary-fixed": "#e0e3e6",
+                      "secondary-container": "#fed65b",
+                      "tertiary": "#1b1f21",
+                      "primary-container": "#003366",
+                      "surface-container-high": "#e8e8ea",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#dadadc",
+                      "surface-variant": "#e2e2e5",
+                      "inverse-on-surface": "#f0f0f3",
+                      "inverse-primary": "#a7c8ff",
+                      "primary-fixed-dim": "#a7c8ff",
+                      "on-tertiary-fixed-variant": "#43474a",
+                      "on-surface": "#1a1c1e",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed-dim": "#c3c7ca",
+                      "surface-container-highest": "#e2e2e5",
+                      "primary-fixed": "#d5e3ff",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f3f3f6",
+                      "secondary-fixed-dim": "#e9c349",
+                      "on-primary": "#ffffff",
+                      "background": "#f9f9fc",
+                      "outline": "#737780",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "outline-variant": "#c3c6d1",
+                      "on-primary-fixed": "#001b3c",
+                      "secondary-fixed": "#ffe088",
+                      "primary": "#001e40",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#f9f9fc",
+                      "secondary": "#735c00",
+                      "on-background": "#1a1c1e",
+                      "surface": "#f9f9fc",
+                      "on-surface-variant": "#43474f",
+                      "on-primary-container": "#799dd6",
+                      "inverse-surface": "#2f3133",
+                      "surface-tint": "#3a5f94",
+                      "surface-container": "#eeeef0",
+                      "on-secondary-container": "#745c00",
+                      "on-tertiary-container": "#999c9f",
+                      "on-secondary-fixed": "#241a00",
+                      "on-secondary-fixed-variant": "#574500"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "xs": "4px",
+                      "md": "24px",
+                      "base": "8px",
+                      "gutter": "24px",
+                      "lg": "48px",
+                      "margin-desktop": "64px",
+                      "sm": "12px",
+                      "xl": "80px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Montserrat"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Montserrat"
+                      ],
+                      "headline-lg-mobile": [
+                              "Montserrat"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Montserrat"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.04em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-white shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-7xl mx-auto z-50">
+<div class="flex items-center gap-2">
+<img alt="Chroma Cosmos Exports Logo" class="h-10 w-auto object-contain" src="LOGO/logo.jpeg"/>
+<span class="text-headline-md font-headline-md font-bold text-primary flex flex-col leading-tight"><span class="text-[18px]">CHROMA COSMOS</span><span class="text-[14px] font-medium tracking-widest text-primary/70">EXPORTS</span></span>
+</div>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md font-bold" href="index.html">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md font-bold" href="products.html">Exports</a>
+<a class="bg-primary text-white px-5 py-1.5 rounded-full font-label-md text-label-md font-bold shadow-sm" href="about.html">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md font-bold" href="contact.html">Contact</a>
+</nav>
+<div class="hidden md:flex items-center gap-4">
+<div class="flex items-center gap-3 mr-2 border-r border-gray-200 pr-4">
+    <a href="https://www.facebook.com/share/1DmZg4KHEo/" target="_blank" class="text-on-surface-variant hover:text-blue-600 transition-colors" aria-label="Facebook">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
+    </a>
+    <a href="https://www.instagram.com/chromacosmosexports?igsh=ZDB6azY1cTFjZGxl" target="_blank" class="text-on-surface-variant hover:text-pink-600 transition-colors" aria-label="Instagram">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
+    </a>
+    <a href="https://youtube.com/@chromacosmosexports?si=wJYZDbiE6P5_JKEG" target="_blank" class="text-on-surface-variant hover:text-red-600 transition-colors" aria-label="YouTube">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.015 3.015 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/chroma-cosmos-exports-62207741b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="text-on-surface-variant hover:text-blue-700 transition-colors" aria-label="LinkedIn">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+    </a>
+</div>
+<a href="admin.html" title="Admin Panel" class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-lg hover:bg-gray-100" aria-label="Admin Panel">
+<span class="material-symbols-outlined" style="font-size:24px;">admin_panel_settings</span>
+</a>
+<button onclick="window.open('https://wa.me/919063896610', '_blank')" class="inline-flex items-center justify-center bg-[#d4af37] text-white font-label-md text-label-md px-6 py-2 rounded transition-all duration-300 hover:bg-[#b5952f] shadow-md font-bold">
+                Get a Quote
+            </button>
+</div>
+<button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+<!-- Mobile Menu Panel -->
+<div id="mobile-menu" class="hidden md:hidden bg-white border-t border-outline-variant/20 absolute w-full left-0 top-full shadow-lg z-40">
+<div class="flex flex-col p-4 space-y-4">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md font-bold" href="index.html">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md font-bold" href="products.html">Exports</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md font-bold" href="about.html">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md font-bold" href="contact.html">Contact</a>
+<a href="admin.html" class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md font-bold" aria-label="Admin Panel">
+<span class="material-symbols-outlined text-base" style="font-size:18px;">admin_panel_settings</span> Admin Panel
+</a>
+<button onclick="window.open('https://wa.me/919063896610', '_blank')" class="bg-[#d4af37] text-white font-label-md text-label-md px-6 py-2 rounded transition-all duration-300 hover:bg-[#b5952f] shadow-md font-bold text-center">
+    Get a Quote
+</button>
+<div class="flex items-center justify-center gap-6 pt-4 border-t border-outline-variant/20 mt-2">
+    <a href="https://www.facebook.com/share/1DmZg4KHEo/" target="_blank" class="text-on-surface-variant hover:text-blue-600 transition-colors" aria-label="Facebook">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"/></svg>
+    </a>
+    <a href="https://www.instagram.com/chromacosmosexports?igsh=ZDB6azY1cTFjZGxl" target="_blank" class="text-on-surface-variant hover:text-pink-600 transition-colors" aria-label="Instagram">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"/></svg>
+    </a>
+    <a href="https://youtube.com/@chromacosmosexports?si=wJYZDbiE6P5_JKEG" target="_blank" class="text-on-surface-variant hover:text-red-600 transition-colors" aria-label="YouTube">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.015 3.015 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.501 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.377.55 9.377.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/chroma-cosmos-exports-62207741b?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="text-on-surface-variant hover:text-blue-700 transition-colors" aria-label="LinkedIn">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+    </a>
+</div>
+</div>
+</div>
+</header>
+<main class="w-full max-w-7xl mx-auto">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary mb-md">Welcome to Chroma Cosmos Exports LLP</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-md">
+                        At Chroma Cosmos Exports LLP, we are committed to connecting global markets with high-quality products sourced from trusted Indian manufacturers and suppliers. As a growing export company, our focus is on delivering quality, reliability, and customer satisfaction in every shipment.
+                        <br><br>
+                        We believe that successful international trade is built on trust, transparency, and long-term business relationships. Every order is handled with attention to quality standards, timely communication, and efficient logistics to ensure a smooth buying experience for our customers.
+                        <br><br>
+                        We welcome importers, wholesalers, distributors, retailers, and business partners from around the world and look forward to building lasting partnerships based on mutual success.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<div class="bg-surface-container p-4 rounded-lg flex-1 border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary text-3xl mb-2 block">visibility</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Our Vision</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">To establish Chroma Cosmos Exports LLP as a trusted Indian export company recognized worldwide for quality, integrity, and dependable service.</p>
+</div>
+<div class="bg-surface-container p-4 rounded-lg flex-1 border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary text-3xl mb-2 block">flag</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Our Mission</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">To deliver quality products from India to global markets while creating lasting value for our customers through trust, consistency, and professional service.</p>
+</div>
+</div>
+</div>
+<div class="relative h-[400px] rounded-xl overflow-hidden shadow-md">
+<img class="object-cover w-full h-full" data-alt="A large, modern cargo ship navigating through calm blue waters at sunset, symbolizing global trade and logistics. The lighting is warm and cinematic, highlighting the massive scale of the vessel against the vast ocean. The color palette emphasizes deep navy blues, warm golds, and crisp whites, reflecting a corporate and highly professional modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX4YDLvCxBIxt6xYxXDcqzf2H9KaIuyhZP8P70yM8GHUt2Jwve20SWF6BVReHKydgAeJQgwMySeR7FEvXQAKjqnTe-n68OHKjGRCrIDJNatEptgykKFUVa4S6Y1ULsiizyyhlNCw85WDYkQ-vqonlgzWeHGmxOtFYHzw2VPcvt494PT4t8C2Hn1L6OO0I1M8shQ9UFrMGfoVF79GQgo_MjF4erE6_QRWUhNDemulZowl1jl0DfwxjYZ9X1K3lE9x37aNBXQdXUzl4"/>
+<div class="absolute inset-0 bg-primary/10"></div>
+</div>
+</div>
+</section>
+<!-- Why Choose Us Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl bg-surface-container-lowest border-y border-outline-variant/20">
+<div class="max-w-5xl mx-auto bg-surface p-8 md:p-12 rounded-2xl shadow-sm border border-outline-variant/30">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8 text-center">Why Choose Chroma Cosmos Exports LLP?</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-secondary text-2xl">check_circle</span>
+        <span class="font-body-lg text-body-lg text-on-surface-variant font-medium">Quality-focused sourcing</span>
+    </div>
+    <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-secondary text-2xl">check_circle</span>
+        <span class="font-body-lg text-body-lg text-on-surface-variant font-medium">Competitive pricing</span>
+    </div>
+    <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-secondary text-2xl">check_circle</span>
+        <span class="font-body-lg text-body-lg text-on-surface-variant font-medium">Reliable supplier network</span>
+    </div>
+    <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-secondary text-2xl">check_circle</span>
+        <span class="font-body-lg text-body-lg text-on-surface-variant font-medium">Timely order processing</span>
+    </div>
+    <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-secondary text-2xl">check_circle</span>
+        <span class="font-body-lg text-body-lg text-on-surface-variant font-medium">Transparent communication</span>
+    </div>
+    <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-secondary text-2xl">check_circle</span>
+        <span class="font-body-lg text-body-lg text-on-surface-variant font-medium">Customer-first approach</span>
+    </div>
+    <div class="flex items-start gap-3 md:col-span-3 justify-center mt-2">
+        <span class="material-symbols-outlined text-secondary text-2xl">check_circle</span>
+        <span class="font-body-lg text-body-lg text-on-surface-variant font-medium">Commitment to long-term partnerships</span>
+    </div>
+</div>
+</div>
+</section>
+
+<!-- Team Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Company Founders</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Expertise driving our global operations forward.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-gutter max-w-4xl mx-auto">
+<!-- Team Member 1 -->
+<div class="w-full sm:w-64 bg-surface rounded-lg shadow-sm border border-outline-variant/20 overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="h-64 w-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-primary/20">person</span>
+</div>
+<div class="p-md text-center">
+<h3 class="font-headline-md text-headline-md text-primary">Sk.Mohammed Nawaz</h3>
+<p class="font-label-md text-label-md text-secondary mt-1">Founder</p>
+</div>
+</div>
+<!-- Team Member 2 -->
+<div class="w-full sm:w-64 bg-surface rounded-lg shadow-sm border border-outline-variant/20 overflow-hidden hover:shadow-md transition-shadow duration-300">
+<div class="h-64 w-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] text-primary/20">person</span>
+</div>
+<div class="p-md text-center">
+<h3 class="font-headline-md text-headline-md text-primary">Sk.Neelofar</h3>
+<p class="font-label-md text-label-md text-secondary mt-1">Founder</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Markets Served Bento Grid -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl">
+<div class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-2">Markets Served</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Connecting continents with reliable export solutions.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-4 md:grid-rows-2 gap-4 h-[800px] md:h-[500px]">
+<div class="md:col-span-2 md:row-span-2 relative rounded-xl overflow-hidden group">
+<img class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" data-alt="A vibrant, high-angle view of a bustling modern port in Southeast Asia during daytime. Massive cargo containers in various colors are stacked neatly, while massive cranes operate under a clear blue sky. The visual style is crisp, highly detailed, and professional, emphasizing the scale and efficiency of international shipping with a high-contrast, vivid color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5WUnFP2-m6DYgH-wa74GQsIVZDVdu-gikSbYVZaFGGX3UG_CFiSEajl9T1_4cCaGdxViG95Dh9GcCoLlCOZiTAEMeR1EKJOzvZ3zYoRFnBgHLm0WOrQrm9K9WLYVYZo8udJQmEXr59Q_TGQiWQmUngkmj0sCSBc0K1ufCKUE99t9JNPnOF-mHXmWgF4FiLFkBzK2UKcEW--yZRSuqiVh8lhVNxZokzcwPgaVBux_sjfxBsSd1tykvWzv48TeY2b6fUwRfqwDgUDQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent"></div>
+<div class="absolute bottom-md left-md">
+<h3 class="font-headline-lg text-headline-lg text-on-primary">Asia</h3>
+<p class="font-body-md text-body-md text-on-primary/80 mt-2 flex items-center gap-1"><span class="material-symbols-outlined text-sm">trending_up</span> Singapore, Malaysia, China, Bangladesh, Vietnam</p>
+</div>
+</div>
+<div class="md:col-span-2 relative rounded-xl overflow-hidden group">
+<img class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" data-alt="A sleek, modern European cityscape at dusk, featuring a busy river port integrated into the urban environment. The lighting is cinematic, with warm city lights contrasting against deep blue twilight skies. The image conveys established trade routes and high-end logistics, utilizing a sophisticated palette of deep navy, amber, and cool greys." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmoJDa31rwsvjWlvarMmc8STvRI884ziSLODWbJ0f8D3tC4jyAjlBm-bcCq2TWzJ2qHi4fzmnoLBokeoluOecw1RloqSDpl9T_d3IlXHajExzIMDaPY5QbVs47EP8_Wb9imC0G4uwcAciRBfUTzElo6kNuS5SF3_67Ci67dEOWdNOcyMiHpY6rbu_UmE0Tw-eeUbWmhh7bHdyrriFL8qv4b589N6nf5BcbafJOpH2Mb1UZvFPJfPm9GmFKUUszrf_cyLvNSu4Poik"/>
+<div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/50 transition-colors"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<h3 class="font-headline-md text-headline-md text-on-primary font-bold">Europe</h3>
+<p class="font-body-md text-body-md text-on-primary/90 mt-1">Europe, Belgium</p>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden group">
+<img class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" data-alt="A modern city skyline and bustling port in the Middle East, symbolizing rapid growth and logistics." src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=800"/>
+<div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/50 transition-colors"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<h3 class="font-headline-md text-headline-md text-on-primary font-bold">Middle East</h3>
+<p class="font-body-md text-body-md text-on-primary/90 mt-1 text-sm">UAE, Saudi Arabia, Kuwait, Dubai, Qatar</p>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden group">
+<img class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" data-alt="An expansive view of an automated logistics hub in North America, showcasing neat rows of warehouses and transport trucks under bright, clear sunlight. The aesthetic is highly organized, clean, and modern, representing operational excellence. The color scheme focuses on crisp whites, cool greys, and deep professional blues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAJFrfh4SxBnRaelQcu0lwP7J3Zm_sBX64r8QX_TzlB4OD5Mfl8jOu-oVTMW1RtoK8LnHgqn-Q1m585ATR9RwS1VGjtBvCqcGZ9JBCGOxsKxr6sYzVxxhAqMJOBZup57YfT3PKu5iYw3Z-_kOmeWfBR87FLanriTZCl_iPVwykaO-6dypwwlQvU73wVz4pX8jdWHM6Quaj7AI5BsebXRdsIChYKg1VVhmICXnXfIUaKb2oqDrR2AhEYTVCwYXYOKFhH2paAskXz2s"/>
+<div class="absolute inset-0 bg-primary/40 group-hover:bg-primary/50 transition-colors"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<h3 class="font-headline-md text-headline-md text-on-primary font-bold">North America</h3>
+<p class="font-body-md text-body-md text-on-primary/90 mt-1">USA, Canada</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-xl bg-surface-bright border-t border-outline-variant/20">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<!-- Form -->
+<div class="bg-surface p-md rounded-xl shadow-sm border border-outline-variant/30">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Get in Touch</h2>
+<form class="space-y-4">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Full Name</label>
+<input class="w-full bg-surface border border-outline-variant rounded-md px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Email Address</label>
+<input class="w-full bg-surface border border-outline-variant rounded-md px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors" type="email"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Message</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-md px-4 py-2 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors resize-none" rows="4"></textarea>
+</div>
+<button type="button" onclick="window.open('https://wa.me/919063896610', '_blank')" class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm">
+                            Send Message
+                        </button>
+</form>
+</div>
+<!-- Details -->
+<div class="flex flex-col justify-center space-y-8">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-6">Global Headquarters</h3>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">mail</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Email</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">info@chromacosmosexports.com</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">call</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Phone</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">+91 9063896610<br/>+91 9063846610</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">location_on</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Address</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">Sri venkateswara nilayam 06<br/>first floor G2, Mulapet<br/>Nellore 524003</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#005aab] text-white w-full mt-auto">
+<div class="w-full px-margin-mobile md:px-margin-desktop py-6 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto gap-6 md:gap-4">
+<nav class="flex flex-wrap justify-center gap-6 text-sm font-medium">
+    <a href="index.html" class="hover:text-[#d4af37] transition-colors">Home</a>
+    <a href="products.html" class="hover:text-[#d4af37] transition-colors">Exports</a>
+    <a href="about.html" class="hover:text-[#d4af37] transition-colors">About Us</a>
+</nav>
+<div class="flex items-center gap-3">
+    <img alt="Chroma Cosmos Exports Logo Footer" class="h-10 w-auto object-contain bg-white rounded p-1" src="LOGO/logo.jpeg"/>
+    <span class="font-bold tracking-wider text-sm">CHROMA COSMOS EXPORTS</span>
+</div>
+<div>
+    <a href="contact.html" class="text-sm font-medium hover:text-[#d4af37] transition-colors">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>
